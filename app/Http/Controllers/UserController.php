@@ -59,9 +59,14 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        return view('welcome', compact('user'));
+        if ($id) {
+            $user = $this->user->get_user_by_id($id);
+            return view('welcome', compact('user'));
+        } else {
+            abort(422, "Missing key value for ID.");
+        }
     }
 
     /**
