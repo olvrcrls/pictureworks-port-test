@@ -15,13 +15,10 @@ use App\Http\Controllers\Api\UserController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
+/** Group route for API on users record. */
 Route::group(['prefix' => 'users'], function () {
-    Route::get('/', [UserController::class, 'index']);
-    Route::get('/{id}', [UserController::class, 'show'])->where(["id" => "[0-9]+"]);
-    Route::post('/', [UserController::class, 'store']);
-    Route::put('/', [UserController::class, 'update'])->where(["id" => "[0-9]+"]);;
+    Route::get('/', [UserController::class, 'index']); // index view
+    Route::get('/{id}', [UserController::class, 'show'])->where(["id" => "[0-9]+"]); // show specific user
+    Route::post('/', [UserController::class, 'store']); // store user record
+    Route::put('/', [UserController::class, 'update']); // update user record
 });

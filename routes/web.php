@@ -13,10 +13,12 @@ use App\Http\Controllers\UserController;
 |
 */
 
+/** Index page / Welcome page */
 Route::get('/{id?}', [UserController::class, 'index'])->where(['id' => '[0-9]+']);
 
+/** Group route for users record. */
 Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
-    Route::get('/{id?}', [UserController::class, 'index'])->where(['id' => '[0-9]+'])->name('index');
-    Route::put('/{id}', [UserController::class, 'update'])->where(['id' => '[0-9]+'])->name('update');
-    Route::put('/', [UserController::class, 'store'])->name('store');
+    Route::get('/{id?}', [UserController::class, 'index'])->where(['id' => '[0-9]+'])->name('index'); // users.index
+    Route::put('/{id}', [UserController::class, 'update'])->where(['id' => '[0-9]+'])->name('update'); // users.update
+    Route::put('/', [UserController::class, 'store'])->name('store'); // users.store
 });
