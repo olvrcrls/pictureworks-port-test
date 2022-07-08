@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix' => 'users'], function () {
+    Route::get('/', [UserController::class, 'index']);
+    Route::get('/{id}', [UserController::class, 'show'])->where(["id" => "[0-9]+"]);
+    Route::post('/', [UserController::class, 'store']);
+    Route::put('/', [UserController::class, 'update'])->where(["id" => "[0-9]+"]);;
+});

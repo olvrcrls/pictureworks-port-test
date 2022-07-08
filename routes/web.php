@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/{id?}', [UserController::class, 'index'])->where(['id' => '[0-9]+']);
+
+Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+    Route::get('/{id?}', [UserController::class, 'index'])->where(['id' => '[0-9]+'])->name('index');
+    Route::put('/{id}', [UserController::class, 'update'])->where(['id' => '[0-9]+'])->name('update');
+    Route::put('/', [UserController::class, 'store'])->name('store');
 });
