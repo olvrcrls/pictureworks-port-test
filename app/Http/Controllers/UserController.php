@@ -48,7 +48,7 @@ class UserController extends Controller
             $user = $this->user->create_or_update($request->validated());
             return view('welcome', compact('user'));
         } catch (Exception $e) {
-            Log::error($e->getMessage . " Code: {$e->getCode()}");
+            Log::error($e->getMessage() . " Code: {$e->getCode()}");
             abort($e->getCode());
         }
     }
@@ -95,7 +95,7 @@ class UserController extends Controller
                 return view('welcome', compact('user'));
             } else throw new Exception("Missing key/value for id", 422);
         } catch (Exception $e) {
-            Log::error($e->getMessage . " Code: {$e->getCode()}");
+            Log::error($e->getMessage() . " Code: {$e->getCode()}");
             abort($e->getCode());
         }
     }
